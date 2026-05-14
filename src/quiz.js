@@ -7,14 +7,6 @@ class Quiz {
         this.currentQuestionIndex = 0;
     }
 
-    getQuestion() {
-        return this.questions[this.currentQuestionIndex]
-    }
-
-    moveToNextQuestion() {
-        this.currentQuestionIndex++;
-    }
-
     shuffleQuestions() {
         const shuffleArray = function (question, index, questionsArr) {
             const tempQuestion = question
@@ -25,6 +17,14 @@ class Quiz {
         this.questions.forEach(shuffleArray);
     }
 
+    getQuestion() {
+        return this.questions[this.currentQuestionIndex]
+    }
+
+    moveToNextQuestion() {
+        this.currentQuestionIndex++;
+    }
+
     checkAnswer(answer) {
         const currentQuestion = this.questions[this.currentQuestionIndex]
         if (answer === currentQuestion.answer) {
@@ -33,11 +33,9 @@ class Quiz {
     }
 
     hasEnded() {
-        if (this.currentQuestionIndex < this.questions.length) {
-            return false;
-        }
-        return true;
+        return this.currentQuestionIndex >= this.questions.length;
     }
+
 
     filterQuestionsByDifficulty(difficulty) {
         if (difficulty >= 1 || difficulty <= 3) {
